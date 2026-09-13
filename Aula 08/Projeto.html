@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Página Inicial</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="background">
+
+    <header class="links">
+    </header>
+
+    <main>
+
+      <nav class="menu-horizontal">
+            <ul>
+                <div class="color-div">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="projeto.html">Projetos</a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="tarefa.html">Tarefas</a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="usuario.html">Usuários</a></li>
+                </div>
+            </ul>
+
+        </nav>
+
+        <div class="titulo1">
+            <h1>Adicionar Novo Projeto</h1>
+        </div>
+
+        <div class="formulario">
+            <form>
+
+                <label for="nome">Nome do Projeto:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="text" id="nome" name="nome">
+
+                <br><br>
+
+                <label for="descricao">Descrição:</label>
+                <br>
+
+                <textarea id="descricao" name="descricao">
+            </textarea>
+
+                <br><br>
+
+                <label for="dataCriacao">Data de criação:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="date" id="dataCriacao" name="dataCriacao">
+
+                <br><br>
+
+                <label for="dataConclusao">Data de conclusão:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="date" id="dataConclusao" name="dataConclusao">
+
+                <br><br>
+
+                <label for="status">Status:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <select id="status" name="status">
+                    <option value="">Selecione</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluído">Concluído</option>
+                    <option value="Entregue">Entregue</option>
+                </select>
+
+                <br><br>
+
+                <label for="responsavel">Responsável:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="text" id="responsavel" name="responsavel">
+
+                <br><br>
+
+                <button style="background-color: green; color: white;" type="submit">
+                    Salvar
+                </button>
+
+                <br><br>
+
+                <button style="background-color: red; color: white;" type="reset">
+                    Cancelar
+                </button>
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+    </footer>
+
+</body>
+
+</html>

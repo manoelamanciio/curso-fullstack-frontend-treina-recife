@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Página Inicial</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .ast2 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body style="background-color: white;">
+
+    <header>
+        <nav style="width: 100%; background-color: white;">
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="tarefas.html">Tarefas</a></li>
+                <li><a href="usuarios.html">Usuários</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>Adicionar Novo Projeto</h1>
+
+        <form>
+
+            <label for="nome">Nome do Projeto:</label>
+            <span class="ast2">*</span>
+            <br>
+
+            <input type="text" id="nome" name="nome">
+
+            <br><br>
+
+            <label for="descricao">Descrição:</label>
+            <br>
+
+            <textarea id="descricao" name="descricao">
+            </textarea>
+
+            <br><br>
+
+            <label for="dataCriacao">Data de criação:</label>
+            <span class="ast2">*</span>
+            <br>
+
+            <input type="date" id="dataCriacao" name="dataCriacao">
+
+            <br><br>
+
+            <label for="dataConclusao">Data de conclusão:</label>
+            <span class="ast2">*</span>
+            <br>
+
+            <input type="date" id="dataConclusao" name="dataConclusao">
+
+            <br><br>
+
+            <label for="status">Status:</label>
+            <span class="ast2">*</span>
+            <br>
+
+            <select id="status" name="status">
+                <option value="">Selecione</option>
+                <option value="Pendente">Pendente</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Entregue">Entregue</option>
+            </select>
+
+            <br><br>
+
+            <label for="responsavel">Responsável:</label>
+            <span class="ast2">*</span>
+            <br>
+
+            <input type="text" id="responsavel" name="responsavel">
+
+            <br><br>
+
+            <button style="background-color: green; color: white;" type="submit">
+                Salvar
+            </button>
+
+            <br><br>
+
+            <button style="background-color: red; color: white;" type="reset">
+                Cancelar
+            </button>
+
+        </form>
+
+    </main>
+
+    <footer>
+    </footer>
+
+</body>
+
+</html>

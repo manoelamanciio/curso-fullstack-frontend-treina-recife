@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Página Inicial</title>
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="background">
+
+    <header class="links">
+    </header>
+
+    <main>
+
+        <nav class="menu-horizontal">
+            <ul>
+                <div class="color-div">
+                    <li><a href="dashboard.html">Dashboard<span class="material-icons">dashboard</span></a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="tarefa.html">Tarefas<span class="material-icons">list_alt</span> </a></li>
+                </div>
+
+
+                <div class="color-div">
+                    <li><a href="projeto.html">Projetos<span class="material-icons">list_alt</span></a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="usuario.html">Usuários<span class="material-icons">list_alt</span> </a></li>
+                </div>
+            </ul>
+
+        </nav>
+
+        <div class="titulo1">
+            <h1>Adicionar Novo Projeto</h1>
+        </div>
+
+        <div class="form-principal container">
+            <div class="row justify-content-center"></div>
+            <div class="col-md-6"></div>
+            <form>
+
+                <label for="nome">Nome do Projeto:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="text" id="nome" name="nome" class="form-usuario">
+
+                <br><br>
+
+                <label for="descricao">Descrição:</label>
+                <br>
+
+                <textarea id="descricao" name="descricao" class="form-usuario">
+            </textarea>
+
+                <br><br>
+
+                <label for="dataCriacao">Data de criação:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="date" id="dataCriacao" name="dataCriacao" class="form-usuario">
+
+                <br><br>
+
+                <label for="dataConclusao">Data de conclusão:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="date" id="dataConclusao" name="dataConclusao" class="form-usuario">
+
+                <br><br>
+
+                <label for="status">Status:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <select id="status" name="status" class="form-usuario">
+                    <option value="">Selecione</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluído">Concluído</option>
+                    <option value="Entregue">Entregue</option>
+                </select>
+
+                <br><br>
+
+                <label for="responsavel">Responsável:</label>
+                <span class="ast">*</span>
+                <br>
+
+                <input type="text" id="responsavel" name="responsavel" class="form-usuario">
+
+                <br><br>
+
+                <button type="button" class="btn btn-success">
+                    Salvar
+                </button>
+
+                <br><br>
+
+                <button type="reset" class="btn btn-danger">
+                    Cancelar
+                </button>
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+    </footer>
+
+    <script src="js/Projeto.js"></script>
+</body>
+
+</html>
