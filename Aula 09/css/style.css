@@ -8,21 +8,21 @@
     color: red;
 }
 
-
-.formulario {
-    background-color: white;
-    width: 300px;
-    margin: auto;
-    padding: 40px 40px 40px 40px;
-    border-radius: 10px;
+.area-projeto {
+    width: 90%;
+    max-width: 760px;
+    margin: 40px auto;
 }
 
-.titulo1 {
+.titulo-form {
     color: white;
-    font-size: 18px;
-    width: 500px;
-    height: 50px;
-    margin: auto;
+    text-align: left;
+    margin-bottom: 0 0 20px;
+}
+
+.titulo-form h1 {
+    font-size: 40px;
+    margin: 0;
 }
 
 div.hover {
@@ -115,10 +115,11 @@ li :hover {
 }
 
 .form-principal {
-    width: 60%;
+    width: 100%;
     max-width: 700px;
-    margin: 100px auto;
+    margin: 0;
     padding: 30px;
+    box-sizing: border-box;
     border-radius: 10px;
     position: relative;
     background-color: white;
