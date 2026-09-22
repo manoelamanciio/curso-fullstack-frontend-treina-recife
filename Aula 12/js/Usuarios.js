@@ -23,14 +23,14 @@ function salvar(){
     let nome = document.getElementById('nome').value; 
     let cpf = document.getElementById('cpf').value;
     let email = document.getElementById('email').value;
-    let datanasc = document.getElementById('datanasc').value;
+    let dataNascimento = document.getElementById('dataNascimento').value;
     let status = document.getElementById('status').value;
 
     const usuariosObj = {
         nome: nome,
         cpf:cpf,
         email:email,
-        datanasc: datanasc,
+        dataNascimento: dataNascimento,
         status: status
     }
     
