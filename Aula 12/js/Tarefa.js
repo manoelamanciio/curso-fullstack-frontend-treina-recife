@@ -55,3 +55,34 @@ function tarefa() {
 
 
 }
+
+function salvar(){
+    let tituloTarefa = document.getElementsById('titulo').value;
+    let prioridadeTarefa = document.getElementById('prioridade').value;
+    let responsavelTarefa = document.getElementById('responsavel').value;
+    let descricaoTarefa = document.getElementById('descricao').value;
+    let dataCriacaoTarefa = document.getElementById('dataCriacao').value;
+    let dataConclusaoTarefa = document.getElementById('dataConclusao').value;
+    let statusTarefa = document.getElementById('status').value;
+    let projetoTarefa = document.getElementById('projeto').value;
+
+
+    const tarefaObj = {
+        titulot:tituloTarefa,
+        prioridade: prioridadeTarefa,
+        responsavel:responsavelTarefa,
+        descricao:descricaoTarefa,
+        dataCriacao:dataCriacaoTarefa,
+        dataConclusao:dataConclusaoTarefa,
+        status:statusTarefa,
+        projeto:projetoTarefa
+
+    }
+
+    const recTarefa = JSON.parse(localStorage.getItem("tarefa")) || [];
+    recTarefa.push(tarefaObj);
+
+    localStorage.setItem("tarefa", JSON.stringify(recTarefa));
+
+    alert('Usuário salvo com sucesso!');
+}
