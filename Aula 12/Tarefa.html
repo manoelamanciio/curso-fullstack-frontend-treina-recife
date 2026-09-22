@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <title>Página Inicial</title>
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="background">
+
+    <header>
+
+    </header>
+
+    <main>
+        <nav class="menu-horizontal">
+            <ul>
+                <div class="color-div">
+                    <li><a href="dashboard.html">Dashboard<span class="material-icons">dashboard</span></a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="tarefa.html">Tarefas<span class="material-icons">list_alt</span> </a></li>
+                </div>
+
+
+                <div class="color-div">
+                    <li><a href="projeto.html">Projetos<span class="material-icons">list_alt</span></a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="usuario.html">Usuários<span class="material-icons">list_alt</span> </a></li>
+                </div>
+            </ul>
+
+        </nav>
+
+        <div class="area-projeto">
+
+            <div class="titulo-form">
+                <h1>Adicionar Nova Tarefa</h1>
+            </div>
+
+            <div class="form-principal">
+
+                <form>
+
+                    <label class="titulo" for="titulo">Título:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="text" id="titulo" name="titulo" class="form-usuario">
+                    <br><br>
+
+                    <label for="prioridade">Prioridade:</label>
+                    <span class="ast">*</span>
+                    <br>
+
+                    <select id="prioridade" name="prioridade" class="form-usuario">
+                        <option value="">Selecione</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Média">Média</option>
+                        <option value="Baixa">Baixa</option>
+                    </select>
+
+                    <br><br>
+
+                    <label for="responsavel">Responsável:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="text" id="responsavel" name="responsavel" class="form-usuario">
+
+                    <br><br>
+
+                    <label for="descricao">Descrição:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <textarea id="descricao" name="descricao" class="form-usuario"></textarea>
+
+                    <br><br>
+
+                    <label for="dataCriacao">Data de criação:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="date" id="dataCriacao" name="dataCriacao" class="form-usuario">
+
+                    <br><br>
+
+                    <label for="dataConclusao">Data de conclusão:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="date" id="dataConclusao" name="dataConclusao" class="form-usuario">
+
+                    <br><br>
+
+                    <label for="status">Status:</label>
+                    <span class="ast">*</span>
+                    <br>
+
+                    <select id="status" name="status" class="form-usuario">
+                        <option value="">Selecione</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Concluído">Concluído</option>
+                        <option value="Entregue">Entregue</option>
+                    </select>
+
+                    <br><br>
+
+                    <label for="projeto">Projeto:</label>
+                    <span class="ast">*</span>
+                    <br>
+
+                    <select id="projeto" name="projeto" class="form-usuario">
+                        <option value="">Selecione</option>
+                        <option value="Website">Website</option>
+                        <option value="Aplicativo">Aplicativo</option>
+                        <option value="Sistema interno">Sistema interno</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+
+                    <br><br>
+
+                    <label for="lembrete">Definir lembrete</label>
+                    <input type="checkbox" id="lembrete" name="lembrete">
+
+                    <br><br>
+
+                    <button type="submit" class="btn btn-success" onclick="tarefa()">
+                        Salvar
+                    </button>
+
+                    <br><br>
+
+                    <button type="reset" class="btn btn-danger">
+                        Cancelar
+                    </button>
+
+                </form>
+            </div>
+
+    </main>
+
+    <footer>
+    </footer>
+    <script src="js/Tarefa.js"></script>
+
+</body>
+
+</html>
