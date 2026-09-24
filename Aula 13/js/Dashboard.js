@@ -36,5 +36,4 @@ function gerarGrafico() {
 }
 
 consultarUsuarios()
-
 gerarGrafico()
