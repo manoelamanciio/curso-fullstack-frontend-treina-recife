@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Sistema de Gestão de Projetos - Usuários</title>
+    <meta charset="UTF-8">
+    <meta lang="pt-br">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body style="background-color: #031f31;">
+
+    <main>
+
+        <nav class="menu-horizontal">
+            <ul>
+                <div class="color-div">
+                    <li><a href="dashboard.html"><span class="material-icons">dashboard</span>Dashboard</a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="tarefa.html"><span class="material-icons">share</span>Tarefas</a></li>
+                </div>
+
+
+                <div class="color-div">
+                    <li><a href="projeto.html"><span class="material-icons">list_alt</span>Projetos</a></li>
+                </div>
+
+                <div class="color-div">
+                    <li><a href="usuario.html"><span class="material-icons">group</span>Usuários</a></li>
+                </div>
+            </ul>
+
+        </nav>
+        <div class="area-projeto">
+
+            <div class="titulo-form">
+                <h1>Adicionar Novo Usuário</h1>
+            </div>
+
+            <div class="form-principal">
+
+                <form>
+
+                    <label for="nome">Nome:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="text" id="nome" name="nome" class="form-usuario">
+
+                    <br><br>
+
+                    <label for="cpf">CPF:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="number" id="cpf" name="cpf" maxlength="11" pattern="[0-9]{11}" class="form-usuario">
+
+                    <br><br>
+
+                    <label for="email">E-mail:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="email" id="email" name="email" class="form-usuario">
+
+                    <br><br>
+
+                    <label for="dataNascimento">Data de Nascimento:</label>
+                    <span class="ast">*</span>
+                    <br>
+                    <input type="date" id="dataNascimento" name="dataNascimento" class="form-usuario">
+
+                    <br><br>
+
+                    <label for="status">Status:</label>
+                    <span class="ast">*</span>
+                    <br>
+
+                    <select id="status" name="status" class="form-usuario">
+                        <option value="">Selecione o status</option>
+                        <option value="Ativo">Ativo</option>
+                        <option value="Inativo">Inativo</option>
+                        <option value="Pendente">Pendente</option>
+                    </select>
+
+                    <br><br>
+
+                    <label for="senha">Senha temporária:</label>
+                    <span class="ast">*</span>
+                    <br>
+
+                    <input type="password" id="senha" name="senha" minlength="8" required class="form-usuario">
+
+                    <br><br>
+
+                    <button type="button" class="btn btn-success" onclick="salvar()">
+                        Salvar
+                    </button>
+
+                    <br><br>
+
+                    <button type="reset" class="btn btn-danger">
+                        Cancelar
+                    </button>
+
+                </form>
+            </div>
+            <div>
+                <a href="#titulo-user" class="btn-top">Subir para o topo</a>
+            </div>
+
+
+    </main>
+
+    <footer>
+    </footer>
+
+    <script src="js/Usuarios.js"></script>
+</body>
+
+</html>
