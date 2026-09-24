@@ -1,12 +1,14 @@
+
+
 function consultarUsuarios() {
 
-    let dados = localStorage.getItem('usuarios') || '[]';
-    let qtd = JSON.parse(dados);
-    let result = qtd.length();
+    let qtd = JSON.parse(localStorage.getItem("usuarios") || '[]');
+
+    let result = qtd.length;
     document.getElementById('qtdUsuarios').innerHTML = result
 
-    let inativos = qtd.filter(k => k.status == 'Inativo').length()
-    document.getElementById('qtdUsuarios').innerHTML = inativos
+    let inativos = qtd.filter(k => k.status == 'inativo').length
+    document.getElementById('usuInativo').innerHTML = inativos
 
 }
 
@@ -27,8 +29,15 @@ function gerarGrafico() {
     const myChart = new Chart(area, {
         type: 'line',
         data: dados
+
     })
+
+
 }
 
+
+
+
 consultarUsuarios()
+
 gerarGrafico()
