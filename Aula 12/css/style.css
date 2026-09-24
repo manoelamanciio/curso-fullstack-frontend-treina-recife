@@ -137,3 +137,14 @@ li :hover {
     border-radius: 5px;
 
 }
+
+.alinhar-campos {
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.coluna {
+    width: 100%;
+}
