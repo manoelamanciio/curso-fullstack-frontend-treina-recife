@@ -1,62 +1,50 @@
-// function usuario(){
+function validar() {
+  let nome = document.getElementById("nome").value;
+  let cpf = document.getElementById("cpf").value;
+  let email = document.getElementById("email").value;
 
-//     let nome = document.getElementById('nome').value; 
-//     let cpf = document.getElementById('cpf').value;
-//     let email = document.getElementById('email').value;
-
-//     if(nome == ''){
-//         alert('preencha o campo nome');
-//     }else{
-//         alert('o nome preenchido eh ' + nome)
-//     }
-
-//     const usuario = {
-//         nome: nome,
-//         cpf: cpf,
-//         email: email,
-//     }
-// }
-
-
-function salvar(){
-
-    let nome = document.getElementById('nome').value; 
-    let cpf = document.getElementById('cpf').value;
-    let email = document.getElementById('email').value;
-    let dataNascimento = document.getElementById('dataNascimento').value;
-    let status = document.getElementById('status').value;
-
-    const usuariosObj = {
-        nome: nome,
-        cpf:cpf,
-        email:email,
-        dataNascimento: dataNascimento,
-        status: status
-    }
-    
-    const recUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    recUsuario.push(usuariosObj);
-
-    localStorage.setItem("usuarios", JSON.stringify(recUsuario));
-
-    alert('Usuário salvo com sucesso!');
-
+  if (nome == "") {
+    alert("preencha o campo nome");
+    return
+  } else {
+    alert("o nome preenchido é: " + nome);
+  }
+  salvar();
 }
 
+function salvar() {
+  let nome = document.getElementById("nome").value;
+  let cpf = document.getElementById("cpf").value;
+  let email = document.getElementById("email").value;
+  let dataNascimento = document.getElementById("dataNascimento").value;
+  let status = document.getElementById("status").value;
 
+  const usuariosObj = {
+    nome: nome,
+    cpf: cpf,
+    email: email,
+    dataNascimento: dataNascimento,
+    status: status,
+  };
+
+  const recUsuario = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+  recUsuario.push(usuariosObj);
+
+  localStorage.setItem("usuarios", JSON.stringify(recUsuario));
+
+  alert("Usuário salvo com sucesso!");
+}
 
 // for (let a = 1; a <= 10; a++) {
 //     console.log(a);
 // }
-
 
 // let k = 10;
 // while (k < 15) {
 //     k++;
 //     console.log(k);
 // }
-
 
 // for(let i = 1; i<=20;i++){
 //     if(i % 2 == 0 ){
@@ -71,7 +59,6 @@ function salvar(){
 
 // }
 
-
 // let senha = prompt('Digite sua senha');
 
 // while(senha !== "1234"){
@@ -80,9 +67,6 @@ function salvar(){
 // }
 
 // alert("Acesso permitido!");
-
-
-
 
 //OBJETOS
 // const compras = {
@@ -97,8 +81,6 @@ function salvar(){
 // compras.oleo = 25.00
 // delete compras.macarrao
 // console.log(compras)
-
-
 
 // const aluno = {
 //     nome:"João",
@@ -120,10 +102,8 @@ function salvar(){
 
 // console.log(aluno)
 
-
-
 //ARRAY
-// const frutas = ["melao","uva","banana","maca"] 
+// const frutas = ["melao","uva","banana","maca"]
 // frutas[4] = "caju"
 
 // console.log(frutas)
@@ -131,7 +111,6 @@ function salvar(){
 // for(let a = 0; a < frutas.length; a++){
 //     console.log(frutas[a])
 // }
-
 
 // const numeros = [2,6,9,15]
 // //  console.log(numeros)
@@ -158,12 +137,10 @@ function salvar(){
 //     return item.status
 //  })
 
-
 // const tf = tarefas.filter(item => {
 //     return item.status == "Concluído"
 // })
 
- //console.log(tf)
-
+//console.log(tf)
 
 //MAP e FILTER
