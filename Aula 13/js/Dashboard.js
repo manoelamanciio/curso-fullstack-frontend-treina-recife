@@ -7,11 +7,13 @@ function consultarUsuarios() {
     let result = qtd.length;
     document.getElementById('qtdUsuarios').innerHTML = result
 
+    // o filter ele retorna um novo array
+    // aplicar essa logica em projetos
     let inativos = qtd.filter(k => k.status == 'inativo').length
     document.getElementById('usuInativo').innerHTML = inativos
 
 }
-
+// adicionar a essa function um filtro para contar o numero de inativos e retonar o valor
 function gerarGrafico() {
 
     const area = document.getElementById('grafico')
@@ -22,7 +24,7 @@ function gerarGrafico() {
             label: "Valores"
         }, {
             data: [40, 38, 19, 23, 43],
-            label: "outros"
+            label: "Inativos"
         }]
     }
 
@@ -31,7 +33,6 @@ function gerarGrafico() {
         data: dados
 
     })
-
 
 }
 
