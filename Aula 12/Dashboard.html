@@ -3,38 +3,61 @@
 <html>
 
 <head>
-    <title>Página Inicial</title>
+    <title>DASHBOARD</title>
     <meta charset="UTF-8">
     <meta lang="pt-br">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylsheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body style="background-color: white;">
-    <div class="container"></div>
+<body>
 
-    <header>
-        <nav style="width: 100%; background-color: white;">
-
-            <ul>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="projeto.html">Projetos</a></li>
-                <li><a href="tarefa.html">Tarefas</a></li>
-                <li><a href="usuario.html">Usuários</a></li>
+    <div class="container">
 
 
-            </ul>
-        </nav>
-    </header>
+        <header>
+            <nav class="menu-horizontal">
+                <ul>
+                    <li><a href="dashboard.html"><span class="material-icons">dashboard</span>Dashboard</a></li>
+                    <li><a href="projetos.html"><span class="material-icons">list_alt</span>Projetos</a></li>
+                    <li><a href="tarefas.html"><span class="material-icons">share</span>Tarefas</a></li>
+                    <li><a href="usuarios.html"><span class="material-icons">group</span>Usuários</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
 
-    <main>
-        
-    </main>
-    <div id="Usuarios" class="usuarios"></div>
+            <h1>DASHBOARD</h1>
 
-    <h1 class="teste"></h1>
+        </main>
 
-    <script src="js/Dashboard_.js"></script>
+        <button type="button" class="btn btn-primary">
+            Total de Usuários <span id=qtdUsuarios class="badge text-bg-secondary"></span>
+        </button>
+
+        <button type="button" class="btn btn-danger">
+            Usuários Inativos <span id=usuInativo class="badge text-bg-secondary"></span>
+        </button>
+
+        <div>
+            <canvas id="grafico">
+
+
+            </canvas>
+        </div>
+
+        <footer>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
+
+<footer>
+</footer>
+
+
+</html>
