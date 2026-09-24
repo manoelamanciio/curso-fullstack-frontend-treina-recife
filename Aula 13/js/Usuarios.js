@@ -5,7 +5,7 @@ function validar() {
 
   if (nome == "") {
     alert("preencha o campo Nome");
-    return
+    return;
   } else {
     alert("o nome preenchido é: " + nome);
   }
@@ -20,6 +20,7 @@ function salvar() {
   let status = document.getElementById("status").value;
 
   const usuariosObj = {
+    id: Date.now().toString(),
     nome: nome,
     cpf: cpf,
     email: email,
@@ -27,7 +28,7 @@ function salvar() {
     status: status,
   };
 
-  const recUsuario = JSON.parse(localStorage.getItem("usuarios")) || '[]';
+  const recUsuario = JSON.parse(localStorage.getItem("usuarios")) || "[]";
 
   recUsuario.push(usuariosObj);
 
