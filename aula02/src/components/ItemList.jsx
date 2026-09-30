@@ -1,9 +1,10 @@
 
 import ItemCard from "./ItemCard"
-function ItemList([it]) {
+
+function ItemList({ it }) {
 
     return (
-        <h1> <ItemCard /></h1>
+        <div> {it.map((i) => (<ItemCard key={i.id} item={i} />))}</div>
     )
 
 }
