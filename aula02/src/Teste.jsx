@@ -7,7 +7,8 @@ function Teste() {
     const itens = [
         { id: 1, titulo: "react", professor: "Manoel" },
         { id: 2, titulo: "html", professor: "Amaires" },
-        { id: 3, titulo: "css", professor: "Maria" }
+        { id: 3, titulo: "css", professor: "Maria" },
+        { id: 4, titulo: "Java", professor: "Rute" }
     ]
 
 
