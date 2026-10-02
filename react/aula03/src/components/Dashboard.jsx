@@ -1,3 +1,5 @@
-function Dashborad(){
+function Dashboard(){
     
 }
+
+export default Dashboard
