@@ -25,27 +25,27 @@ function FormUsuario() {
     }
 
     return (
+
         <form>
-            <label >Nome </label>
+            <label >Nome: </label>
             <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} /><br />
 
-            <label >Cpf </label>
+            <label >Cpf: </label>
             <input type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} /><br />
 
-            <label >Email </label>
+            <label >Email: </label>
             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} /><br />
 
-            <label >Data de Nascimento </label>
+            <label >Data de Nascimento: </label>
             <input type="text" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} /><br />
 
-            <label >Status </label>
+            <label >Status: </label>
             <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} /><br />
 
-            <label >Senha Temporária </label>
+            <label >Senha Temporária: </label>
             <input type="text" value={senhaTemporaria} onChange={(e) => setSenhaTemporaria(e.target.value)} /><br />
 
             <button onClick={salvar}>Salvar</button>
-            <button onChange={deletar}>Deletar</button>
 
         </form>
 
