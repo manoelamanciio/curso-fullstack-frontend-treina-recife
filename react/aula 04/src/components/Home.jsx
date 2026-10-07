@@ -24,6 +24,7 @@ function Home() {
                 <Route path="/tarefas" element={<FormTarefas />}></Route>
             </Routes>
 
+        
         </BrowserRouter>
     )
 

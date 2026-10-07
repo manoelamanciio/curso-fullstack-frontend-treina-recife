@@ -46,8 +46,8 @@ function FormProjeto() {
             <label>Responsável: </label>
             <input type="text" value={responsavelProjeto} onChange={(j) => setResponsavelProjeto(j.target.value)} /><br />
 
-            <Button variant="primary" className="btn01">Salvar</Button><br />
-            
+            <Button variant="primary" className="btn01" onClick={salvar}>Salvar</Button><br />
+
             <Button variant="danger">Deletar</Button>
 
         </form>
