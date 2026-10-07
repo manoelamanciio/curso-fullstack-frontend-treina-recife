@@ -58,7 +58,7 @@ function FormTarefas() {
             <label>Projeto: </label>
             <input type="text" value={projetoTarefa} onChange={(n) => setProjetoTarefa(n.target.value)} /><br />
 
-            <Button variant="primary" className="btn01">Salvar</Button><br />
+            <Button variant="primary" className="btn01" onClick={salvar}>Salvar</Button><br />
             <Button variant="danger">Deletar</Button>
 
 

@@ -47,11 +47,10 @@ function FormUsuario() {
             <label >Senha Temporária: </label>
             <input type="text" value={senhaTemporaria} onChange={(e) => setSenhaTemporaria(e.target.value)} /><br />
 
-          <Button variant="primary" className="btn01">Salvar</Button><br/>
-           <Button variant="danger">Deletar</Button>
+          <Button variant="primary" className="btn01" onClick={salvar}>Salvar</Button><br/>
+           <Button variant="danger" >Deletar</Button>
 
         </form>
-
 
     )
 
