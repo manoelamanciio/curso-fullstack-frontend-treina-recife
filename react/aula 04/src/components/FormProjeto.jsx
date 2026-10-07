@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Button from 'react-bootstrap/Button';
 
 function FormProjeto() {
 
@@ -45,8 +46,9 @@ function FormProjeto() {
             <label>Responsável: </label>
             <input type="text" value={responsavelProjeto} onChange={(j) => setResponsavelProjeto(j.target.value)} /><br />
 
-            <button onClick={salvar}>Salvar Projeto</button>
-
+            <Button variant="primary" className="btn01">Salvar</Button><br />
+            
+            <Button variant="danger">Deletar</Button>
 
         </form>
     )

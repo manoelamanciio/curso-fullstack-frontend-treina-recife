@@ -1,4 +1,6 @@
 import { useState } from "react"
+import Button from 'react-bootstrap/Button';
+
 
 
 function FormTarefas() {
@@ -56,7 +58,10 @@ function FormTarefas() {
             <label>Projeto: </label>
             <input type="text" value={projetoTarefa} onChange={(n) => setProjetoTarefa(n.target.value)} /><br />
 
-            <button onClick={salvar}>Salvar</button>
+            <Button variant="primary" className="btn01">Salvar</Button><br />
+            <Button variant="danger">Deletar</Button>
+
+
         </form>
 
     )
