@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function FormUsuario() {
 
@@ -45,9 +47,11 @@ function FormUsuario() {
             <label >Senha Temporária: </label>
             <input type="text" value={senhaTemporaria} onChange={(e) => setSenhaTemporaria(e.target.value)} /><br />
 
-            <button onClick={salvar}>Salvar</button>
+          <Button variant="primary" className="btn01">Salvar</Button><br/>
+           <Button variant="danger">Deletar</Button>
 
         </form>
+
 
     )
 

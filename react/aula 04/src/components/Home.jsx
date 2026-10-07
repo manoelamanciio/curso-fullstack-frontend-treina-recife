@@ -3,7 +3,7 @@ import FormUsuario from "./FormUsuario"
 import FormProjeto from "./FormProjeto"
 import Dashboard from "./Dashboard"
 import FormTarefas from "./FormTarefas"
-
+import Button from 'react-bootstrap/Button';
 
 function Home() {
 
@@ -11,7 +11,7 @@ function Home() {
         <BrowserRouter>
 
             <nav>
-                <Link to="/">Home</Link> | {""}
+                <Link to="/">DASHBOARD</Link> | {""}
                 <Link to="/usuarios">USUARIOS</Link>  | {""}
                 <Link to="/projetos">PROJETOS</Link>  | {""}
                 <Link to="/tarefas">TAREFAS</Link>
