@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard"
 import FormTarefas from "./FormTarefas"
 import Button from 'react-bootstrap/Button';
 import ListarUSuarios from "./ListarUsuarios"
+import Usuario from "./Usuario"
 
 function Home() {
 
@@ -16,7 +17,8 @@ function Home() {
                 <Link to="/usuarios">USUARIOS</Link>  | {""}
                 <Link to="/projetos">PROJETOS</Link>  | {""}
                 <Link to="/tarefas">TAREFAS</Link> | {""}
-                <Link to="/listar-usuarios">LISTAR USUARIOS</Link>
+                <Link to="/listar-usuarios">LISTAR USUARIOS</Link> | {""}
+                <Link to="usuario">POST USUARIO</Link>
             </nav>
 
             <Routes>
@@ -25,6 +27,7 @@ function Home() {
                 <Route path="/projetos" element={<FormProjeto />}></Route>
                 <Route path="/tarefas" element={<FormTarefas />}></Route>
                 <Route path="/listar-usuarios" element={<ListarUSuarios/>}></Route>
+                <Route path="/usuario" element={<Usuario/>}></Route>
             </Routes>
 
 

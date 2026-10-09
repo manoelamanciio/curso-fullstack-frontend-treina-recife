@@ -6,6 +6,8 @@ function ListarUSuarios() {
 
     const [usuario, setUSuario] = useState([]);
 
+
+
     useEffect(() => {
 
         fetch('https://jsonplaceholder.typicode.com/users')
@@ -31,13 +33,10 @@ function ListarUSuarios() {
                         {usu.name} - {usu.username}
                     </li>
                 ))}
-
-
             </ol>
 
         </div>
     )
-
 
 }
 
