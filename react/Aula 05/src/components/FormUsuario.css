@@ -1,0 +1,57 @@
+.form-principal {
+    width: 100%;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-usuario {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.alinhar-campos {
+    display: flex;
+    gap: 15px;
+}
+
+.coluna {
+    width: 100%;
+    min-width: 0;
+}
+
+.titulo-form {
+    color: #031f31;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.titulo-form h1 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.ast {
+    color: red;
+}
+
+@media (max-width: 576px) {
+    .form-principal {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .alinhar-campos {
+        flex-direction: column;
+        gap: 0;
+    }
+}
