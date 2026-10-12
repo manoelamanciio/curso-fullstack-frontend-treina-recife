@@ -55,3 +55,27 @@
         gap: 0;
     }
 }
+
+.form-usuario-container {
+    width: 90%;
+    max-width: 700px;
+
+    /* Posicionamento */
+    margin: 20px 0 0 20px;
+
+    /* Aparência */
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-usuario-titulo {
+    color: #031f31;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.campo-usuario {
+    margin-bottom: 15px;
+}
