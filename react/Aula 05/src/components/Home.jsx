@@ -17,8 +17,6 @@ function Home() {
                 <Link to="/usuarios">USUARIOS</Link>  | {""}
                 <Link to="/projetos">PROJETOS</Link>  | {""}
                 <Link to="/tarefas">TAREFAS</Link> | {""}
-                <Link to="/listar-usuarios">LISTAR USUARIOS</Link> | {""}
-                <Link to="usuario">POST USUARIO</Link>
             </nav>
 
             <Routes>
@@ -26,8 +24,6 @@ function Home() {
                 <Route path="/usuarios" element={<FormUsuario />}></Route>
                 <Route path="/projetos" element={<FormProjeto />}></Route>
                 <Route path="/tarefas" element={<FormTarefas />}></Route>
-                <Route path="/listar-usuarios" element={<ListarUSuarios/>}></Route>
-                <Route path="/usuario" element={<Usuario/>}></Route>
             </Routes>
 
 
