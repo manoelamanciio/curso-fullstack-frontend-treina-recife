@@ -3,8 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./FormUsuario.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-function FormUsuario() {
+import axios from "axios";
 
+function FormUsuario() {
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
@@ -46,14 +47,19 @@ function FormUsuario() {
             email,
             dataNascimento,
             status,
-            senhaTemporaria
+            senha: senhaTemporaria,
         };
 
-        console.log(usuario);
-
-        alert("Dados do usuário salvos com sucesso!");
-
-        limparCampos();
+        axios.post("/usuarios", usuario)
+            .then((response) => {
+                console.log(response.data);
+                alert("Dados do usuário salvos com sucesso!");
+                limparCampos();
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Erro ao salvar o usuário.");
+            });
     };
 
     const cancelar = () => {
@@ -66,133 +72,136 @@ function FormUsuario() {
         }
     };
 
-
     return (
+        <div className="fundo-azul-pagina">
+            <div className="container-usuario">
+                <h1 className="titulo-form">Adicionar Novo Usuário</h1>
 
-        <div className="container-usuario">
-            <h2 className="titulo-form">Adicionar novo Usuário</h2>
+                <Form className="form-principal" onSubmit={salvar}>
 
-            <Form className="form-principal" onSubmit={salvar}>
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="nome" className="d-block text-start">
-                        Nome:<span className="obrigatorio">*</span>
-                    </Form.Label>
-                    <Form.Control
-                        type="text"
-                        id="nome"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                        placeholder="Digite o nome"
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="cpf" className="d-block text-start">
-                        CPF:<span className="obrigatorio">*</span>
-                    </Form.Label>
-                    <Form.Control
-                        type="text"
-                        id="cpf"
-                        value={cpf}
-                        onChange={(e) =>
-                            setCpf(
-                                e.target.value
-                                    .replace(/\D/g, "")
-                                    .slice(0, 11)
-                                    .replace(/(\d{3})(\d)/, "$1.$2")
-                                    .replace(/(\d{3})(\d)/, "$1.$2")
-                                    .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-                            )
-                        }
-                        placeholder="000.000.000-00"
-                        maxLength={14}
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="email" className="d-block text-start">E-mail:</Form.Label>
-                    <Form.Control
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="email@email.com"
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="dataNascimento" className="d-block text-start">
-                        Data de nascimento:<span className="obrigatorio">*</span>
-                    </Form.Label>
-                    <Form.Control
-                        type="date"
-                        id="dataNascimento"
-                        value={dataNascimento}
-                        onChange={(e) =>
-                            setDataNascimento(e.target.value)
-                        }
-                    />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="status" className="d-block text-start">Status:</Form.Label>
-                    <Form.Select
-                        id="status"
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                    >
-                        <option value="">Selecione o status</option>
-                        <option value="ATIVO">Ativo</option>
-                        <option value="INATIVO">Inativo</option>
-                    </Form.Select>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label
-                        htmlFor="senhaTemporaria"
-                        className="d-block text-start"
-                    >
-                        Senha temporária:
-                    </Form.Label>
-
-                    <div className="campo-senha">
-                        <button
-                            type="button"
-                            className="botao-olho"
-                            onClick={() => setMostrarSenha(!mostrarSenha)}
-                            aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}
-                        >
-                            {mostrarSenha ? <FaEyeSlash /> : <FaEye />}
-                        </button>
-
-                        <Form.Control
-                            type={mostrarSenha ? "text" : "password"}
-                            id="senhaTemporaria"
-                            value={senhaTemporaria}
-                            onChange={(e) => setSenhaTemporaria(e.target.value)}
-                            placeholder="Digite a senha"
-                        />
+                    {/* Topo com Nome e botão de Listagem para manter o padrão de Tarefas */}
+                    <div className="topo-form-usuario">
+                        <Form.Group className="campo-usuario mb-3 flex-grow-1">
+                            <Form.Label htmlFor="nome" className="text-start d-block">
+                                Nome:<span className="obrigatorio">*</span>
+                            </Form.Label>
+                            <Form.Control
+                                type="text"
+                                id="nome"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                                placeholder="Digite o nome"
+                                required
+                            />
+                        </Form.Group>
+                        <Button variant="success" className="btn-lista-usuarios" href="#lista">
+                            <i className="bi bi-list-check"></i> Lista de Usuários
+                        </Button>
                     </div>
-                </Form.Group>
 
+                    <Form.Group className="campo-usuario mb-3">
+                        <Form.Label htmlFor="cpf" className="text-start d-block">
+                            CPF:<span className="obrigatorio">*</span>
+                        </Form.Label>
+                        <Form.Control
+                            type="text"
+                            id="cpf"
+                            value={cpf}
+                            onChange={(e) =>
+                                setCpf(
+                                    e.target.value
+                                        .replace(/\D/g, "")
+                                        .slice(0, 11)
+                                        .replace(/(\d{3})(\d)/, "$1.$2")
+                                        .replace(/(\d{3})(\d)/, "$1.$2")
+                                        .replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+                                )
+                            }
+                            placeholder="000.000.000-00"
+                            maxLength={14}
+                            required
+                        />
+                    </Form.Group>
 
-                <Button variant="primary" type="submit" className="btn01">
-                    Adicionar Usuário
-                </Button>{" "}
+                    <Form.Group className="campo-usuario mb-3">
+                        <Form.Label htmlFor="email" className="text-start d-block">E-mail:</Form.Label>
+                        <Form.Control
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="email@email.com"
+                        />
+                    </Form.Group>
 
-                <Button
-                    variant="danger"
-                    type="button"
-                    onClick={cancelar}
-                >
-                    Cancelar
-                </Button>
+                    <Form.Group className="campo-usuario mb-3">
+                        <Form.Label htmlFor="dataNascimento" className="d-block text-start">
+                            Data de Nascimento:<span className="obrigatorio">*</span>
+                        </Form.Label>
+                        <Form.Control
+                            type="date"
+                            id="dataNascimento"
+                            value={dataNascimento}
+                            onChange={(e) => setDataNascimento(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
 
-            </Form >
+                    <Form.Group className="campo-usuario mb-3">
+                        <Form.Label htmlFor="status" className="text-start d-block">Status:</Form.Label>
+                        <Form.Select
+                            id="status"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                        >
+                            <option value="">Selecione o status</option>
+                            <option value="ATIVO">Ativo</option>
+                            <option value="INATIVO">Inativo</option>
+                        </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group className="campo-usuario mb-4">
+                        <Form.Label htmlFor="senhaTemporaria" className="text-start d-block">
+                            Senha Temporária:
+                        </Form.Label>
+                        <div className="campo-senha">
+                            <button
+                                type="button"
+                                className="botao-olho"
+                                onClick={() => setMostrarSenha(!mostrarSenha)}
+                                aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}
+                            >
+                                {mostrarSenha ? <FaEyeSlash /> : <FaEye />}
+                            </button>
+                            <Form.Control
+                                type={mostrarSenha ? "text" : "password"}
+                                id="senhaTemporaria"
+                                value={senhaTemporaria}
+                                onChange={(e) => setSenhaTemporaria(e.target.value)}
+                                placeholder="Digite a senha"
+                            />
+                        </div>
+                    </Form.Group>
+
+                    <div className="botoes-usuario">
+                        <Button variant="success" type="submit" className="w-100 mb-2">
+                            Adicionar Usuário
+                        </Button>
+
+                        <Button
+                            variant="outline-danger"
+                            type="button"
+                            className="w-100"
+                            onClick={cancelar}
+                        >
+                            Cancelar
+                        </Button>
+                    </div>
+
+                </Form>
+            </div>
         </div>
     );
 }
 
 export default FormUsuario;
-

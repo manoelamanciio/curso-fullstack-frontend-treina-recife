@@ -1,15 +1,38 @@
+/* Configuração global para forçar o fundo azul na tela toda */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #031f31;
+}
+
+.fundo-azul-pagina {
+    background-color: #031f31;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 20px 0 40px 0;
+    box-sizing: border-box;
+}
+
 .container-projeto {
     width: 90%;
-    max-width: 700px;
+    max-width: 750px;
     margin: 20px auto;
+    padding: 0;
 }
 
 .titulo-projeto {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
-    color: #031f31;
+    color: #ffffff;
     text-align: left;
-    margin: 0 0 12px 0;
+    margin: 0 0 20px 0;
 }
 
 .form-projeto {
@@ -17,10 +40,23 @@
     margin: 0;
     padding: 30px;
     box-sizing: border-box;
-    border-radius: 10px;
-    background-color: white;
-    color: black;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #212529;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.topo-form-projeto {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.btn-lista-projetos {
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
 }
 
 .campo-projeto {
@@ -29,14 +65,20 @@
 }
 
 .campo-projeto .form-label {
-    font-weight: 500;
-    color: #031f31;
+    font-weight: 600;
+    color: #212529;
+    font-size: 14px;
+    text-align: left;
+    display: block;
 }
 
 .campo-projeto .form-control,
 .campo-projeto .form-select {
     width: 100%;
     box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
 }
 
 .campo-projeto textarea {
@@ -45,7 +87,7 @@
 
 .alinhar-campos {
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 .alinhar-campos .campo-projeto {
@@ -60,34 +102,52 @@
 
 .botoes-projeto {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.botoes-projeto .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.botoes-projeto .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: transparent;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.botoes-projeto .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #ffffff;
 }
 
 @media (max-width: 576px) {
     .container-projeto {
-        width: auto;
-        margin: 15px;
-    }
-
-    .titulo-projeto {
-        font-size: 24px;
+        width: 100%;
+        padding: 10px;
     }
 
     .form-projeto {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .topo-form-projeto {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-lista-projetos {
+        width: 100%;
+        margin-bottom: 15px;
     }
 
     .alinhar-campos {
         flex-direction: column;
         gap: 0;
-    }
-
-    .botoes-projeto {
-        flex-direction: column;
-    }
-
-    .botoes-projeto .btn {
-        width: 100%;
     }
 }

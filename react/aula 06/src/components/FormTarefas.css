@@ -1,16 +1,16 @@
 .container-tarefa {
     width: 90%;
-    max-width: 700px;
+    max-width: 750px;
     margin: 20px auto;
     padding: 20px 0;
 }
 
 .titulo-tarefa {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
-    color: #031f31;
+    color: #ffffff;
     text-align: left;
-    margin: 0 0 12px;
+    margin: 0 0 20px;
 }
 
 .form-tarefa {
@@ -18,10 +18,23 @@
     margin: 0;
     padding: 30px;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: #ffffff;
     color: #212529;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.topo-form-tarefa {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.btn-lista-tarefas {
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
 }
 
 .campo-tarefa {
@@ -30,14 +43,18 @@
 }
 
 .campo-tarefa .form-label {
-    font-weight: 500;
-    color: #031f31;
+    font-weight: 600;
+    color: #212529;
+    font-size: 14px;
 }
 
 .campo-tarefa .form-control,
 .campo-tarefa .form-select {
     width: 100%;
     box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
 }
 
 .campo-tarefa textarea {
@@ -46,7 +63,7 @@
 
 .alinhar-campos-tarefa {
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 .alinhar-campos-tarefa .campo-tarefa {
@@ -61,35 +78,76 @@
 
 .botoes-tarefa {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 0px;
+}
+
+/* Estilização personalizada para os botões inferiores da imagem */
+.botoes-tarefa .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.botoes-tarefa .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: transparent;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.botoes-tarefa .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #ffffff;
 }
 
 @media (max-width: 576px) {
     .container-tarefa {
-        width: auto;
-        margin: 15px;
-        padding: 0;
-    }
-
-    .titulo-tarefa {
-        font-size: 24px;
+        width: 100%;
+        padding: 10px;
     }
 
     .form-tarefa {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .topo-form-tarefa {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-lista-tarefas {
+        width: 100%;
+        margin-bottom: 15px;
     }
 
     .alinhar-campos-tarefa {
         flex-direction: column;
         gap: 0;
     }
+}
 
-    .botoes-tarefa {
-        flex-direction: column;
-    }
+/* Reseta margens globais do navegador caso estejam limitando a largura */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #031f31;
+    /* Garante que o fundo da página toda seja azul */
+}
 
-    .botoes-tarefa .btn {
-        width: 100%;
-    }
+.fundo-azul-pagina {
+    background-color: #031f31;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 20px 0 40px 0;
+    box-sizing: border-box;
 }

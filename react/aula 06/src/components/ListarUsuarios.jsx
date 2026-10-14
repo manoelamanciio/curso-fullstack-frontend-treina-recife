@@ -3,16 +3,19 @@ import axios from "axios";
 
 function ListarUSuarios() {
 
-    const [usuarios, setUSuario] = useState([0]);
+    const [usuarios, setUSuarios] = useState([]);
 
     useEffect(() => {
-
-        axios.get("https://jsonplaceholder.typicode.com/users")
-        .then((response) => {setUSuario(response.data)})
-        .catch(() => {
-            alert("Erro ao carregar")
-        })
-
+        axios.get("/usuarios")
+            .then((response) => {
+                setUSuarios(response.data)
+                console.log(response.data);
+                setUSuarios(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Erro ao carregar");
+            })
     }, [])
 
 
@@ -23,7 +26,7 @@ function ListarUSuarios() {
             <ol>
                 {usuarios.map((usuario) => (
                     <li key={usuario.id}>
-                        {usuario.name} - {usuario.email}
+                        {usuario.nome} - {usuario.email}
                     </li>
                 ))}
             </ol>

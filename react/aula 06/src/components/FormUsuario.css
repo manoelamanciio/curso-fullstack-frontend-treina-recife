@@ -1,89 +1,82 @@
+/* Configuração global para forçar o fundo azul na tela toda */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #031f31;
+}
+
+.fundo-azul-pagina {
+    background-color: #031f31;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 20px 0 40px 0;
+    box-sizing: border-box;
+}
+
+.container-usuario {
+    width: 90%;
+    max-width: 750px;
+    margin: 20px auto;
+    padding: 0;
+}
+
+.titulo-form {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: left;
+    margin: 0 0 20px 0;
+}
+
 .form-principal {
     width: 100%;
     margin: 0;
     padding: 30px;
     box-sizing: border-box;
-    border-radius: 10px;
-    background-color: white;
-    color: black;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #212529;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.form-usuario {
-    width: 100%;
-    margin-top: 8px;
-    padding: 8px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.alinhar-campos {
+.topo-form-usuario {
     display: flex;
+    align-items: flex-end;
     gap: 15px;
 }
 
-.coluna {
+.btn-lista-usuarios {
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.campo-usuario {
     width: 100%;
     min-width: 0;
 }
 
-.titulo-form {
-    color: #031f31;
-    text-align: left;
-    margin-bottom: 20px;
+.campo-usuario .form-label {
+    font-weight: 600;
+    color: #212529;
+    font-size: 14px;
 }
 
-.titulo-form h1 {
-    font-size: 30px;
-    margin: 0;
-}
-
-.ast {
-    color: red;
-}
-
-@media (max-width: 576px) {
-    .container-usuario {
-        width: auto;
-        margin: 15px;
-    }
-
-    .form-principal {
-        padding: 20px;
-    }
-
-    .alinhar-campos {
-        flex-direction: column;
-        gap: 0;
-    }
-}
-
-.form-usuario-container {
-    width: 90%;
-    max-width: 700px;
-    margin: 20px 0 0 20px;
-    padding: 30px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.form-usuario-titulo {
-    color: #031f31;
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.campo-usuario {
-    margin-bottom: 15px;
-}
-
-.pagina-usuario {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 100vh;
+.campo-usuario .form-control,
+.campo-usuario .form-select {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
 }
 
 .campo-senha {
@@ -120,17 +113,67 @@
     margin-left: 3px;
 }
 
-.container-usuario {
-
-    width: 90%;
-    max-width: 700px;
-    margin: 20px auto;
+.botoes-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
 }
 
-.titulo-form {
-    font-size: 30px;
-    font-weight: bold;
-    color: #031f31;
-    text-align: left;
-    margin-bottom: 0 0 12px 0;
+.botoes-usuario .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.botoes-usuario .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: transparent;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.botoes-usuario .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+@media (max-width: 576px) {
+    .container-usuario {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .form-principal {
+        padding: 15px;
+    }
+
+    .topo-form-usuario {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-lista-usuarios {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+/* Garante que o input de data tenha um espaçamento interno ideal para o ícone nativo do calendário */
+.campo-usuario input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+}
+
+/* Se o navegador suportar o ícone de calendário nativo, garantimos que ele fique alinhado à direita */
+.campo-usuario input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: opacity(0.8);
+}
+
+.campo-usuario input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: opacity(1);
 }

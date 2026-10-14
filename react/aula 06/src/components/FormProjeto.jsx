@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -34,131 +33,133 @@ function FormProjeto() {
         };
 
         console.log("Dados do projeto:", projeto);
-
         alert("Dados do projeto preparados para envio!");
 
         limparCampos();
     };
 
     return (
-        <div className="container-projeto">
-            <h1 className="titulo-projeto">
-                Adicionar Novo Projeto
-            </h1>
+        <div className="fundo-azul-pagina">
+            <div className="container-projeto">
+                <h1 className="titulo-projeto">Adicionar Novo Projeto</h1>
 
-            <Form
-                className="form-projeto"
-                onSubmit={salvar}
-            >
-                <Form.Group className="campo-projeto mb-3">
-                    <Form.Label>
-                        Nome do Projeto <span className="obrigatorio">*</span>
-                    </Form.Label>
+                <Form className="form-projeto" onSubmit={salvar}>
 
-                    <Form.Control
-                        type="text"
-                        id="nomeProjeto"
-                        value={nomeProjeto}
-                        onChange={(e) => setNomeProjeto(e.target.value)}
-                        placeholder="Digite o nome do projeto"
-                        required
-                    />
-                </Form.Group>
+                    {/* Linha do Nome do Projeto + Botão Lista de Projetos */}
+                    <div className="topo-form-projeto">
+                        <Form.Group className="campo-projeto mb-3 flex-grow-1">
+                            <Form.Label>
+                                Nome do projeto: <span className="obrigatorio">*</span>
+                            </Form.Label>
+                            <Form.Control
+                                type="text"
+                                id="nomeProjeto"
+                                value={nomeProjeto}
+                                onChange={(e) => setNomeProjeto(e.target.value)}
+                                placeholder="Digite o nome do projeto"
+                                required
+                            />
+                        </Form.Group>
+                        <Button variant="success" className="btn-lista-projetos" href="#lista">
+                            <i className="bi bi-list-check"></i> Lista de Projetos
+                        </Button>
+                    </div>
 
-                <Form.Group className="campo-projeto mb-3">
-                    <Form.Label>Descrição</Form.Label>
-
-                    <Form.Control
-                        as="textarea"
-                        rows={4}
-                        id="descricaoProjeto"
-                        value={descricaoProjeto}
-                        onChange={(e) => setDescricaoProjeto(e.target.value)}
-                        placeholder="Descreva os objetivos do projeto"
-                    />
-                </Form.Group>
-
-                <div className="alinhar-campos">
+                    {/* Descrição */}
                     <Form.Group className="campo-projeto mb-3">
-                        <Form.Label>
-                            Data de Criação <span className="obrigatorio">*</span>
-                        </Form.Label>
-
+                        <Form.Label>Descrição:</Form.Label>
                         <Form.Control
-                            type="date"
-                            id="dataCriacaoProjeto"
-                            value={dataCriacaoProjeto}
-                            onChange={(e) => setDataCriacaoProjeto(e.target.value)}
-                            required
+                            as="textarea"
+                            rows={3}
+                            id="descricaoProjeto"
+                            value={descricaoProjeto}
+                            onChange={(e) => setDescricaoProjeto(e.target.value)}
+                            placeholder="Descreva o projeto"
                         />
                     </Form.Group>
 
-                    <Form.Group className="campo-projeto mb-3">
-                        <Form.Label>Data de Conclusão</Form.Label>
+                    {/* Datas (Criação e Conclusão) */}
+                    <div className="alinhar-campos">
+                        <Form.Group className="campo-projeto mb-3">
+                            <Form.Label>
+                                Data de criação: <span className="obrigatorio">*</span>
+                            </Form.Label>
+                            <Form.Control
+                                type="date"
+                                id="dataCriacaoProjeto"
+                                value={dataCriacaoProjeto}
+                                onChange={(e) => setDataCriacaoProjeto(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
 
-                        <Form.Control
-                            type="date"
-                            id="dataConclusao"
-                            value={dataConclusao}
-                            min={dataCriacaoProjeto || undefined}
-                            onChange={(e) => setDataConclusaoProjeto(e.target.value)}
-                        />
-                    </Form.Group>
-                </div>
+                        <Form.Group className="campo-projeto mb-3">
+                            <Form.Label>
+                                Data de conclusão: <span className="obrigatorio">*</span>
+                            </Form.Label>
+                            <Form.Control
+                                type="date"
+                                id="dataConclusao"
+                                value={dataConclusao}
+                                min={dataCriacaoProjeto || undefined}
+                                onChange={(e) => setDataConclusaoProjeto(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+                    </div>
 
-                <div className="alinhar-campos">
-                    <Form.Group className="campo-projeto mb-3">
-                        <Form.Label>
-                            Status <span className="obrigatorio">*</span>
-                        </Form.Label>
+                    {/* Status e Responsável */}
+                    <div className="alinhar-campos">
+                        <Form.Group className="campo-projeto mb-4">
+                            <Form.Label>
+                                Status: <span className="obrigatorio">*</span>
+                            </Form.Label>
+                            <Form.Select
+                                id="statusProjeto"
+                                value={statusProjeto}
+                                onChange={(e) => setStatusProjeto(e.target.value)}
+                                required
+                            >
+                                <option value="">Selecione</option>
+                                <option value="Planejado">Planejado</option>
+                                <option value="Em andamento">Em andamento</option>
+                                <option value="Concluído">Concluído</option>
+                                <option value="Cancelado">Cancelado</option>
+                            </Form.Select>
+                        </Form.Group>
 
-                        <Form.Select
-                            id="statusProjeto"
-                            value={statusProjeto}
-                            onChange={(e) => setStatusProjeto(e.target.value)}
-                            required
+                        <Form.Group className="campo-projeto mb-4">
+                            <Form.Label>
+                                Responsável: <span className="obrigatorio">*</span>
+                            </Form.Label>
+                            <Form.Control
+                                type="text"
+                                id="responsavelProjeto"
+                                value={responsavelProjeto}
+                                onChange={(e) => setResponsavelProjeto(e.target.value)}
+                                placeholder=""
+                                required
+                            />
+                        </Form.Group>
+                    </div>
+
+                    {/* Botões Salvar e Cancelar */}
+                    <div className="botoes-projeto">
+                        <Button variant="success" type="submit" className="w-100 mb-2">
+                            Salvar
+                        </Button>
+
+                        <Button
+                            variant="outline-danger"
+                            type="button"
+                            className="w-100"
+                            onClick={limparCampos}
                         >
-                            <option value="">Selecione o status</option>
-                            <option value="Planejado">Planejado</option>
-                            <option value="Em andamento">Em andamento</option>
-                            <option value="Concluído">Concluído</option>
-                            <option value="Cancelado">Cancelado</option>
-                        </Form.Select>
-                    </Form.Group>
-
-                    <Form.Group className="campo-projeto mb-4">
-                        <Form.Label>
-                            Responsável <span className="obrigatorio">*</span>
-                        </Form.Label>
-
-                        <Form.Control
-                            type="text"
-                            id="responsavelProjeto"
-                            value={responsavelProjeto}
-                            onChange={(e) => setResponsavelProjeto(e.target.value)}
-                            placeholder="Digite o nome do responsável"
-                            required
-                        />
-                    </Form.Group>
-                </div>
-
-                <div className="botoes-projeto">
-                    <Button
-                        variant="primary"
-                        type="submit"
-                    >
-                        Salvar Projeto
-                    </Button>
-
-                    <Button
-                        variant="outline-secondary"
-                        type="button"
-                        onClick={limparCampos}
-                    >
-                        Cancelar
-                    </Button>
-                </div>
-            </Form>
+                            Cancelar
+                        </Button>
+                    </div>
+                </Form>
+            </div>
         </div>
     );
 }
