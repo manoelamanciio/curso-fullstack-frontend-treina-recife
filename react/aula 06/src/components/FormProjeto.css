@@ -1,0 +1,93 @@
+.container-projeto {
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.titulo-projeto {
+    font-size: 30px;
+    font-weight: bold;
+    color: #031f31;
+    text-align: left;
+    margin: 0 0 12px 0;
+}
+
+.form-projeto {
+    width: 100%;
+    margin: 0;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.campo-projeto {
+    width: 100%;
+    min-width: 0;
+}
+
+.campo-projeto .form-label {
+    font-weight: 500;
+    color: #031f31;
+}
+
+.campo-projeto .form-control,
+.campo-projeto .form-select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.campo-projeto textarea {
+    resize: vertical;
+}
+
+.alinhar-campos {
+    display: flex;
+    gap: 15px;
+}
+
+.alinhar-campos .campo-projeto {
+    flex: 1;
+}
+
+.obrigatorio {
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+.botoes-projeto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media (max-width: 576px) {
+    .container-projeto {
+        width: auto;
+        margin: 15px;
+    }
+
+    .titulo-projeto {
+        font-size: 24px;
+    }
+
+    .form-projeto {
+        padding: 20px;
+    }
+
+    .alinhar-campos {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .botoes-projeto {
+        flex-direction: column;
+    }
+
+    .botoes-projeto .btn {
+        width: 100%;
+    }
+}
