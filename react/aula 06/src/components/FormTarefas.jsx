@@ -2,27 +2,28 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./FormTarefas.css";
+import axios from "axios";
 
 function FormTarefas() {
-    const [tituloTarefa, setTituloTarefa] = useState("");
-    const [prioridadeTarefa, setPrioridadeTarefa] = useState("");
-    const [responsavelTarefa, setResponsavelTarefa] = useState("");
-    const [descricaoTarefa, setDescricaoTarefa] = useState("");
-    const [dataCriacaoTarefa, setDataCriacaoTarefa] = useState("");
-    const [dataConclusaoTarefa, setDataConclusaoTarefa] = useState("");
+    const [titulo, setTitulo] = useState("");
+    const [prioridade, setPrioridade] = useState("");
+    const [idUsuario, setIdUsuario] = useState(""); // Ajustado para ID do usuário (responsável)
+    const [descricao, setDescricao] = useState("");
+    const [dataCriacao, setDataCriacao] = useState("");
+    const [dataConclusao, setDataConclusao] = useState("");
     const [statusTarefa, setStatusTarefa] = useState("");
-    const [projetoTarefa, setProjetoTarefa] = useState("");
+    const [idProjeto, setIdProjeto] = useState(""); // Ajustado para ID numérico do projeto
     const [definirLembrete, setDefinirLembrete] = useState(false);
 
     const limparCampos = () => {
-        setTituloTarefa("");
-        setPrioridadeTarefa("");
-        setResponsavelTarefa("");
-        setDescricaoTarefa("");
-        setDataCriacaoTarefa("");
-        setDataConclusaoTarefa("");
+        setTitulo("");
+        setPrioridade("");
+        setIdUsuario("");
+        setDescricao("");
+        setDataCriacao("");
+        setDataConclusao("");
         setStatusTarefa("");
-        setProjetoTarefa("");
+        setIdProjeto("");
         setDefinirLembrete(false);
     };
 
@@ -30,21 +31,40 @@ function FormTarefas() {
         e.preventDefault();
 
         const tarefas = {
-            tituloTarefa: tituloTarefa.trim(),
-            prioridadeTarefa,
-            responsavelTarefa: responsavelTarefa.trim(),
-            descricaoTarefa: descricaoTarefa.trim(),
-            dataCriacaoTarefa,
-            dataConclusaoTarefa,
-            statusTarefa,
-            projetoTarefa: projetoTarefa.trim(),
-            definirLembrete
+            titulo: titulo.trim(),
+            descricao: descricao.trim(),
+            dataCriacao: dataCriacao || null,
+            dataConclusao: dataConclusao || null,
+            prioridade: prioridade || null,
+            statusTarefa: statusTarefa || null,
+            idProjeto: idProjeto ? Number(idProjeto) : null,
+            idUsuario: idUsuario ? Number(idUsuario) : null
         };
 
-        console.log("Dados da tarefa:", tarefas);
-        alert("Dados preparados! Confira a tarefa no console do navegador.");
+        axios.post("/tarefas", tarefas)
+            .then((response) => {
+                console.log(response.data);
+                alert("Sua tarefa foi salva com sucesso!");
+                limparCampos();
+            })
+            .catch((error) => {
+                console.error("Erro completo:", error);
+                if (error.response && error.response.data) {
+                    console.log("Detalhes do erro:", error.response.data);
+                    alert("Erro ao salvar: " + JSON.stringify(error.response.data));
+                } else {
+                    alert("Erro ao salvar tarefa. Verifique os dados.");
+                }
+            });
+    };
 
-        limparCampos();
+    const cancelar = () => {
+        const confirmar = window.confirm(
+            "Tem certeza que deseja cancelar? \n Os dados que não foram salvos serão perdidos."
+        );
+        if (confirmar) {
+            limparCampos();
+        }
     };
 
     return (
@@ -53,7 +73,6 @@ function FormTarefas() {
                 <h1 className="titulo-tarefa" >Adicionar Nova Tarefa</h1>
 
                 <Form className="form-tarefa" onSubmit={salvar}>
-                    {/* Cabeçalho do formulário com o botão Lista de Tarefas */}
                     <div className="topo-form-tarefa">
                         <Form.Group className="campo-tarefa mb-3 flex-grow-1">
                             <Form.Label className="text-start d-block">
@@ -61,9 +80,9 @@ function FormTarefas() {
                             </Form.Label>
                             <Form.Control
                                 type="text"
-                                id="tituloTarefa"
-                                value={tituloTarefa}
-                                onChange={(e) => setTituloTarefa(e.target.value)}
+                                id="titulo"
+                                value={titulo}
+                                onChange={(e) => setTitulo(e.target.value)}
                                 placeholder="Digite o título da tarefa"
                                 required
                             />
@@ -73,55 +92,51 @@ function FormTarefas() {
                         </Button>
                     </div>
 
-                    {/* Linha 1: Prioridade e Responsável */}
                     <div className="alinhar-campos-tarefa">
                         <Form.Group className="campo-tarefa mb-3">
                             <Form.Label className="text-start d-block">
                                 Prioridade: <span className="obrigatorio">*</span>
                             </Form.Label>
                             <Form.Select
-                                id="prioridadeTarefa"
-                                value={prioridadeTarefa}
-                                onChange={(e) => setPrioridadeTarefa(e.target.value)}
+                                id="prioridade"
+                                value={prioridade}
+                                onChange={(e) => setPrioridade(e.target.value)}
                                 required
                             >
                                 <option value="">Selecione</option>
-                                <option value="Baixa">Baixa</option>
-                                <option value="Média">Média</option>
-                                <option value="Alta">Alta</option>
-                                <option value="Urgente">Urgente</option>
+                                <option value="BAIXA">Baixa</option>
+                                <option value="MEDIA">Média</option>
+                                <option value="ALTA">Alta</option>
                             </Form.Select>
                         </Form.Group>
 
                         <Form.Group className="campo-tarefa mb-3">
                             <Form.Label className="text-start d-block">
-                                Responsável: <span className="obrigatorio">*</span>
+                                ID do Responsável (Usuário): <span className="obrigatorio">*</span>
                             </Form.Label>
                             <Form.Control
-                                type="text"
-                                id="responsavelTarefa"
-                                value={responsavelTarefa}
-                                onChange={(e) => setResponsavelTarefa(e.target.value)}
-                                placeholder="Digite o nome do responsável"
+                                type="number"
+                                id="idUsuario"
+                                value={idUsuario}
+                                onChange={(e) => setIdUsuario(e.target.value)}
+                                placeholder="Digite o ID do usuário"
                                 required
                             />
                         </Form.Group>
                     </div>
 
-                    {/* Linha 2: Descrição */}
                     <Form.Group className="campo-tarefa mb-3">
                         <Form.Label className="text-start d-block">Descrição:</Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}
-                            id="descricaoTarefa"
-                            value={descricaoTarefa}
-                            onChange={(e) => setDescricaoTarefa(e.target.value)}
+                            id="descricao"
+                            value={descricao}
+                            onChange={(e) => setDescricao(e.target.value)}
                             placeholder="Descreva a tarefa"
                         />
                     </Form.Group>
 
-                    {/* Linha 3: Data de Criação e Data de Conclusão */}
                     <div className="alinhar-campos-tarefa">
                         <Form.Group className="campo-tarefa mb-3">
                             <Form.Label className="text-start d-block">
@@ -129,9 +144,9 @@ function FormTarefas() {
                             </Form.Label>
                             <Form.Control
                                 type="date"
-                                id="dataCriacaoTarefa"
-                                value={dataCriacaoTarefa}
-                                onChange={(e) => setDataCriacaoTarefa(e.target.value)}
+                                id="dataCriacao"
+                                value={dataCriacao}
+                                onChange={(e) => setDataCriacao(e.target.value)}
                                 required
                             />
                         </Form.Group>
@@ -142,16 +157,15 @@ function FormTarefas() {
                             </Form.Label>
                             <Form.Control
                                 type="date"
-                                id="dataConclusaoTarefa"
-                                value={dataConclusaoTarefa}
-                                min={dataCriacaoTarefa || undefined}
-                                onChange={(e) => setDataConclusaoTarefa(e.target.value)}
+                                id="dataConclusao"
+                                value={dataConclusao}
+                                min={dataCriacao || undefined}
+                                onChange={(e) => setDataConclusao(e.target.value)}
                                 required
                             />
                         </Form.Group>
                     </div>
 
-                    {/* Linha 4: Status e Projeto */}
                     <div className="alinhar-campos-tarefa">
                         <Form.Group className="campo-tarefa mb-3">
                             <Form.Label className="text-start d-block">
@@ -164,10 +178,9 @@ function FormTarefas() {
                                 required
                             >
                                 <option value="">Selecione</option>
-                                <option value="Pendente">Pendente</option>
-                                <option value="Em andamento">Em andamento</option>
-                                <option value="Concluída">Concluída</option>
-                                <option value="Cancelada">Cancelada</option>
+                                <option value="PENDENTE">Pendente</option>
+                                <option value="EM_ANDAMENTO">Em andamento</option>
+                                <option value="CONCLUIDA">Concluída</option>
                             </Form.Select>
                         </Form.Group>
 
@@ -175,20 +188,17 @@ function FormTarefas() {
                             <Form.Label className="text-start d-block">
                                 Projeto: <span className="obrigatorio">*</span>
                             </Form.Label>
-                            <Form.Select
-                                id="projetoTarefa"
-                                value={projetoTarefa}
-                                onChange={(e) => setProjetoTarefa(e.target.value)}
+                            <Form.Control
+                                type="number"
+                                id="idProjeto"
+                                value={idProjeto}
+                                onChange={(e) => setIdProjeto(e.target.value)}
+                                placeholder="Digite o ID do projeto"
                                 required
-                            >
-                                <option value="">Selecione</option>
-                                <option value="Projeto A">Projeto A</option>
-                                <option value="Projeto B">Projeto B</option>
-                            </Form.Select>
+                            />
                         </Form.Group>
                     </div>
 
-                    {/* Linha 5: Checkbox Lembrete */}
                     <Form.Group className="mb-4" >
                         <Form.Check
                             className="text-start d-block"
@@ -200,7 +210,6 @@ function FormTarefas() {
                         />
                     </Form.Group>
 
-                    {/* Linha 6: Botões */}
                     <div className="botoes-tarefa">
                         <Button variant="success" type="submit" className="w-100 mb-2">
                             Salvar
@@ -210,7 +219,7 @@ function FormTarefas() {
                             variant="outline-danger"
                             type="button"
                             className="w-100"
-                            onClick={limparCampos}
+                            onClick={cancelar}
                         >
                             Cancelar
                         </Button>

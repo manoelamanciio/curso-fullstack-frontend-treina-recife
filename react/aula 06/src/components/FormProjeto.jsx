@@ -2,40 +2,61 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./FormProjeto.css";
+import axios from "axios";
 
 function FormProjeto() {
-    const [nomeProjeto, setNomeProjeto] = useState("");
-    const [descricaoProjeto, setDescricaoProjeto] = useState("");
-    const [dataCriacaoProjeto, setDataCriacaoProjeto] = useState("");
-    const [dataConclusao, setDataConclusaoProjeto] = useState("");
-    const [statusProjeto, setStatusProjeto] = useState("");
-    const [responsavelProjeto, setResponsavelProjeto] = useState("");
+    const [nome, setNome] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [dataInicio, setDataInicio] = useState("");
+    const [dataConclusao, setDataConclusao] = useState("");
+    const [status, setStatus] = useState("");
+    const [idResponsavel, setIdResponsavel] = useState("");
 
     const limparCampos = () => {
-        setNomeProjeto("");
-        setDescricaoProjeto("");
-        setDataCriacaoProjeto("");
-        setDataConclusaoProjeto("");
-        setStatusProjeto("");
-        setResponsavelProjeto("");
+        setNome("");
+        setDescricao("");
+        setDataInicio("");
+        setDataConclusao("");
+        setStatus("");
+        setIdResponsavel("");
     };
 
     const salvar = (e) => {
         e.preventDefault();
 
-        const projeto = {
-            nomeProjeto: nomeProjeto.trim(),
-            descricaoProjeto: descricaoProjeto.trim(),
-            dataCriacaoProjeto,
-            dataConclusao,
-            statusProjeto,
-            responsavelProjeto: responsavelProjeto.trim()
+        const projetos = {
+            nome: nome.trim(),
+            descricao: descricao.trim(),
+            dataInicio: dataInicio ? dataInicio : null,
+            dataConclusao: dataConclusao ? dataConclusao : null,
+            status: status || null,
+            idResponsavel: idResponsavel ? Number(idResponsavel) : null
         };
 
-        console.log("Dados do projeto:", projeto);
-        alert("Dados do projeto preparados para envio!");
+        axios.post("/projetos", projetos)
+            .then((response) => {
+                console.log(response.data);
+                alert("Seu projeto foi salvo com sucesso!");
+                limparCampos();
+            })
+            .catch((error) => {
+                console.error("Erro completo: ", error);
+                if (error.response && error.response.data) {
+                    console.log("Detalhes do erro do Java:", error.response.data)
+                    alert("Erro ao salvar:" + JSON.stringify(error.response.data))
+                } else {
+                    alert("Erro ao salvar projeto. Verifique os dados")
+                }
+            });
+    };
 
-        limparCampos();
+    const cancelar = () => {
+        const confirmar = window.confirm(
+            "Tem certeza que deseja cancelar?\n Os dados que não foram salvos serão perdidos. "
+        );
+        if (confirmar) {
+            limparCampos();
+        }
     };
 
     return (
@@ -45,7 +66,6 @@ function FormProjeto() {
 
                 <Form className="form-projeto" onSubmit={salvar}>
 
-                    {/* Linha do Nome do Projeto + Botão Lista de Projetos */}
                     <div className="topo-form-projeto">
                         <Form.Group className="campo-projeto mb-3 flex-grow-1">
                             <Form.Label>
@@ -53,9 +73,9 @@ function FormProjeto() {
                             </Form.Label>
                             <Form.Control
                                 type="text"
-                                id="nomeProjeto"
-                                value={nomeProjeto}
-                                onChange={(e) => setNomeProjeto(e.target.value)}
+                                id="nome"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
                                 placeholder="Digite o nome do projeto"
                                 required
                             />
@@ -65,30 +85,28 @@ function FormProjeto() {
                         </Button>
                     </div>
 
-                    {/* Descrição */}
                     <Form.Group className="campo-projeto mb-3">
                         <Form.Label>Descrição:</Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}
-                            id="descricaoProjeto"
-                            value={descricaoProjeto}
-                            onChange={(e) => setDescricaoProjeto(e.target.value)}
+                            id="descricao"
+                            value={descricao}
+                            onChange={(e) => setDescricao(e.target.value)}
                             placeholder="Descreva o projeto"
                         />
                     </Form.Group>
 
-                    {/* Datas (Criação e Conclusão) */}
                     <div className="alinhar-campos">
                         <Form.Group className="campo-projeto mb-3">
                             <Form.Label>
-                                Data de criação: <span className="obrigatorio">*</span>
+                                Data de início: <span className="obrigatorio">*</span>
                             </Form.Label>
                             <Form.Control
                                 type="date"
-                                id="dataCriacaoProjeto"
-                                value={dataCriacaoProjeto}
-                                onChange={(e) => setDataCriacaoProjeto(e.target.value)}
+                                id="dataInicio"
+                                value={dataInicio}
+                                onChange={(e) => setDataInicio(e.target.value)}
                                 required
                             />
                         </Form.Group>
@@ -101,30 +119,29 @@ function FormProjeto() {
                                 type="date"
                                 id="dataConclusao"
                                 value={dataConclusao}
-                                min={dataCriacaoProjeto || undefined}
-                                onChange={(e) => setDataConclusaoProjeto(e.target.value)}
+                                min={dataInicio || undefined}
+                                onChange={(e) => setDataConclusao(e.target.value)}
                                 required
                             />
                         </Form.Group>
                     </div>
 
-                    {/* Status e Responsável */}
                     <div className="alinhar-campos">
                         <Form.Group className="campo-projeto mb-4">
                             <Form.Label>
                                 Status: <span className="obrigatorio">*</span>
                             </Form.Label>
                             <Form.Select
-                                id="statusProjeto"
-                                value={statusProjeto}
-                                onChange={(e) => setStatusProjeto(e.target.value)}
+                                id="status"
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}
                                 required
                             >
                                 <option value="">Selecione</option>
-                                <option value="Planejado">Planejado</option>
-                                <option value="Em andamento">Em andamento</option>
-                                <option value="Concluído">Concluído</option>
-                                <option value="Cancelado">Cancelado</option>
+                                <option value="ATIVO">Ativo</option>
+                                <option value="EM_ANDAMENTO">Em andamento</option>
+                                <option value="CONCLUIDO">Concluído</option>
+                                <option value="CANCELADO">Cancelado</option>
                             </Form.Select>
                         </Form.Group>
 
@@ -133,17 +150,16 @@ function FormProjeto() {
                                 Responsável: <span className="obrigatorio">*</span>
                             </Form.Label>
                             <Form.Control
-                                type="text"
-                                id="responsavelProjeto"
-                                value={responsavelProjeto}
-                                onChange={(e) => setResponsavelProjeto(e.target.value)}
-                                placeholder=""
+                                type="number"
+                                id="idResponsavel"
+                                value={idResponsavel}
+                                onChange={(e) => setIdResponsavel(e.target.value)}
+                                placeholder="Digite o ID do responsável"
                                 required
                             />
                         </Form.Group>
                     </div>
 
-                    {/* Botões Salvar e Cancelar */}
                     <div className="botoes-projeto">
                         <Button variant="success" type="submit" className="w-100 mb-2">
                             Salvar
@@ -153,7 +169,7 @@ function FormProjeto() {
                             variant="outline-danger"
                             type="button"
                             className="w-100"
-                            onClick={limparCampos}
+                            onClick={cancelar}
                         >
                             Cancelar
                         </Button>

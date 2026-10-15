@@ -64,7 +64,7 @@ function FormUsuario() {
 
     const cancelar = () => {
         const confirmar = window.confirm(
-            "Tem certeza de que deseja cancelar esta ação?\n\nOs dados que não foram salvos serão perdidos."
+            "Tem certeza de que deseja cancelar esta ação?\nOs dados que não foram salvos serão perdidos."
         );
 
         if (confirmar) {

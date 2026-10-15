@@ -8,7 +8,7 @@ function ListarUSuarios() {
     useEffect(() => {
         axios.get("/usuarios")
             .then((response) => {
-                setUSuarios(response.data)
+                setUSuarios(response.data);
                 console.log(response.data);
                 setUSuarios(response.data);
             })

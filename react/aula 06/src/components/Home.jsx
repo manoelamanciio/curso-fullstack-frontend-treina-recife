@@ -16,7 +16,6 @@ function Home() {
                 <Link to="/tarefas">Tarefas</Link> | {""}
                 <Link to="/projetos">Projetos</Link>  | {""}
                 <Link to="/usuarios">Usuários</Link>  | {""}
-
                 <Link to="/listar-usuarios">Listar Usuarios</Link> | {""}
                 <Link to="/usuario">Usuario</Link>
             </nav>
