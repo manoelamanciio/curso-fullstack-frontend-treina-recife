@@ -4,20 +4,4 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      '/usuarios': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-      },
-      '/projetos': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-      },
-      '/tarefas': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-      },
-    },
-  },
 })

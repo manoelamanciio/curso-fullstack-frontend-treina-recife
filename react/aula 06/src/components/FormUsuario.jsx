@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import "./FormUsuario.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import Modal from 'react-bootstrap/Modal';
+
 
 function FormUsuario() {
     const [nome, setNome] = useState("");
