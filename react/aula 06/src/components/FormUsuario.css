@@ -160,7 +160,6 @@ body {
     }
 }
 
-/* Garante que o input de data tenha um espaçamento interno ideal para o ícone nativo do calendário */
 .campo-usuario input[type="date"] {
     appearance: none;
     -webkit-appearance: none;
@@ -168,7 +167,6 @@ body {
     background-color: #fff;
 }
 
-/* Se o navegador suportar o ícone de calendário nativo, garantimos que ele fique alinhado à direita */
 .campo-usuario input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     filter: opacity(0.8);
@@ -176,4 +174,12 @@ body {
 
 .campo-usuario input[type="date"]::-webkit-calendar-picker-indicator:hover {
     filter: opacity(1);
+}
+
+
+.botao {
+
+    width: 200px;
+    ;
+
 }
