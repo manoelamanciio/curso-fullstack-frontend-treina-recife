@@ -1,19 +1,58 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./FormTarefas.css";
-import axios from "axios";
+import api from "../Api";
+import ListaDeTarefas from "./ListaDeTarefas";
+import CampoBusca from "./CampoBusca";
+
+// Aceita array simples ou página do Spring ({ content: [...] })
+function extrairLista(data) {
+    return Array.isArray(data) ? data : data?.content ?? [];
+}
+
+function ordenarPorNome(lista) {
+    return [...lista].sort((a, b) => (a.nome ?? "").localeCompare(b.nome ?? ""));
+}
 
 function FormTarefas() {
+    // controla o modal da lista de tarefas
+    const [mostrarLista, setMostrarLista] = useState(false);
+
+    // opções dos selects (vêm da API)
+    const [usuarios, setUsuarios] = useState([]);
+    const [projetos, setProjetos] = useState([]);
+    const [carregandoOpcoes, setCarregandoOpcoes] = useState(true);
+
     const [titulo, setTitulo] = useState("");
     const [prioridade, setPrioridade] = useState("");
-    const [idUsuario, setIdUsuario] = useState(""); // Ajustado para ID do usuário (responsável)
+    const [idUsuario, setIdUsuario] = useState(""); // ID do usuário (responsável)
     const [descricao, setDescricao] = useState("");
     const [dataCriacao, setDataCriacao] = useState("");
     const [dataConclusao, setDataConclusao] = useState("");
     const [statusTarefa, setStatusTarefa] = useState("");
-    const [idProjeto, setIdProjeto] = useState(""); // Ajustado para ID numérico do projeto
+    const [idProjeto, setIdProjeto] = useState(""); // ID do projeto
     const [definirLembrete, setDefinirLembrete] = useState(false);
+
+    // Muda a cada limpeza do formulário para esvaziar os campos de busca
+    const [resetKey, setResetKey] = useState(0);
+
+    // Carrega usuários e projetos para preencher os selects
+    useEffect(() => {
+        Promise.all([api.get("/usuarios"), api.get("/projetos")])
+            .then(([resUsuarios, resProjetos]) => {
+                setUsuarios(ordenarPorNome(extrairLista(resUsuarios.data)));
+                setProjetos(ordenarPorNome(extrairLista(resProjetos.data)));
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Erro ao carregar usuários e projetos.");
+            })
+            .finally(() => setCarregandoOpcoes(false));
+    }, []);
+
+    const abrirLista = () => setMostrarLista(true);
+    const fecharLista = () => setMostrarLista(false);
 
     const limparCampos = () => {
         setTitulo("");
@@ -25,10 +64,25 @@ function FormTarefas() {
         setStatusTarefa("");
         setIdProjeto("");
         setDefinirLembrete(false);
+        setResetKey((k) => k + 1);
     };
+
+    // REGRA: o usuário só pode ter tarefa se for responsável por pelo menos um projeto
+    const usuarioTemProjeto = (id) =>
+        projetos.some((p) => {
+            const idResponsavel = p.idResponsavel ?? p.responsavel?.id ?? p.responsavelId;
+            return Number(idResponsavel) === Number(id);
+        });
 
     const salvar = (e) => {
         e.preventDefault();
+
+        if (!usuarioTemProjeto(idUsuario)) {
+            alert(
+                "Este usuário não possui nenhum projeto cadastrado.\nCadastre um projeto para ele antes de criar tarefas."
+            );
+            return;
+        }
 
         const tarefas = {
             titulo: titulo.trim(),
@@ -38,10 +92,11 @@ function FormTarefas() {
             prioridade: prioridade || null,
             statusTarefa: statusTarefa || null,
             idProjeto: idProjeto ? Number(idProjeto) : null,
-            idUsuario: idUsuario ? Number(idUsuario) : null
+            idUsuario: idUsuario ? Number(idUsuario) : null,
         };
 
-        axios.post("/tarefas", tarefas)
+        api
+            .post("/tarefas", tarefas)
             .then((response) => {
                 console.log(response.data);
                 alert("Sua tarefa foi salva com sucesso!");
@@ -70,7 +125,7 @@ function FormTarefas() {
     return (
         <div className="fundo-azul-pagina">
             <div className="container-tarefa">
-                <h1 className="titulo-tarefa" >Adicionar Nova Tarefa</h1>
+                <h1 className="titulo-tarefa">Adicionar Nova Tarefa</h1>
 
                 <Form className="form-tarefa" onSubmit={salvar}>
                     <div className="topo-form-tarefa">
@@ -87,8 +142,15 @@ function FormTarefas() {
                                 required
                             />
                         </Form.Group>
-                        <Button variant="success" className="btn-lista-tarefas" href="#lista">
-                            <i className="bi bi-list-check" ></i> Lista de Tarefas
+
+                        {/* type="button" evita que dispare o submit do formulário */}
+                        <Button
+                            type="button"
+                            variant="success"
+                            className="btn-lista-tarefas"
+                            onClick={abrirLista}
+                        >
+                            <i className="bi bi-list-check"></i> Lista de Tarefas
                         </Button>
                     </div>
 
@@ -112,16 +174,22 @@ function FormTarefas() {
 
                         <Form.Group className="campo-tarefa mb-3">
                             <Form.Label className="text-start d-block">
-                                ID do Responsável (Usuário): <span className="obrigatorio">*</span>
+                                Responsável: <span className="obrigatorio">*</span>
                             </Form.Label>
-                            <Form.Control
-                                type="number"
+                            <CampoBusca
+                                key={`usuario-${resetKey}`}
                                 id="idUsuario"
-                                value={idUsuario}
-                                onChange={(e) => setIdUsuario(e.target.value)}
-                                placeholder="Digite o ID do usuário"
+                                opcoes={usuarios}
+                                valorId={idUsuario}
+                                onSelecionar={setIdUsuario}
+                                placeholder="Digite o nome do responsável"
                                 required
                             />
+                            {!carregandoOpcoes && usuarios.length === 0 && (
+                                <Form.Text className="text-danger d-block text-start">
+                                    Nenhum usuário cadastrado.
+                                </Form.Text>
+                            )}
                         </Form.Group>
                     </div>
 
@@ -188,18 +256,24 @@ function FormTarefas() {
                             <Form.Label className="text-start d-block">
                                 Projeto: <span className="obrigatorio">*</span>
                             </Form.Label>
-                            <Form.Control
-                                type="number"
+                            <CampoBusca
+                                key={`projeto-${resetKey}`}
                                 id="idProjeto"
-                                value={idProjeto}
-                                onChange={(e) => setIdProjeto(e.target.value)}
-                                placeholder="Digite o ID do projeto"
+                                opcoes={projetos}
+                                valorId={idProjeto}
+                                onSelecionar={setIdProjeto}
+                                placeholder="Digite o nome do projeto"
                                 required
                             />
+                            {!carregandoOpcoes && projetos.length === 0 && (
+                                <Form.Text className="text-danger d-block text-start">
+                                    Nenhum projeto cadastrado.
+                                </Form.Text>
+                            )}
                         </Form.Group>
                     </div>
 
-                    <Form.Group className="mb-4" >
+                    <Form.Group className="mb-4">
                         <Form.Check
                             className="text-start d-block"
                             type="checkbox"
@@ -226,6 +300,9 @@ function FormTarefas() {
                     </div>
                 </Form>
             </div>
+
+            {/* MODAL: lista de tarefas com os campos de pesquisa */}
+            <ListaDeTarefas show={mostrarLista} onHide={fecharLista} />
         </div>
     );
 }
